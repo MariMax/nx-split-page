@@ -1,0 +1,19 @@
+{
+  "name": "nx-split-page",
+  "version": "0.0.3",
+  "homepage": "https://milovma1.bitbucket.io/nx-split-page",
+  "description": "Angular split-page component",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.com/milovma1/nx-split-page"
+  },
+  "author": {
+    "email": "maxim.milovanov@novartis.com",
+    "name": "Maxim Milovanov"
+  },
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  }
+}

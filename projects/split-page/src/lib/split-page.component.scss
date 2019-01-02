@@ -1,0 +1,164 @@
+:host {
+  flex: 1 1 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.split-page {
+  height: inherit;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  position: relative;
+  max-width: 100%;
+
+  &.disable-selection {
+    user-select: none;
+  }
+}
+
+.side-component {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: relative;
+
+  &--left {
+    flex-grow: 1;
+  }
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.split-separator {
+  cursor: col-resize;
+  position: relative;
+  background-color: #ededed; // Gray Light nibr;
+  transition: background-color 0.15s 0.1s;
+  width: 8px;
+  min-width: 8px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: #c6c6c6; // gray-meduim nibr
+  }
+
+  &:before {
+    color: #888; // Placeholder Gray nibr;
+    content: '\2807';
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.disable-selection .split-separator:after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Dance with animations - scrollIntoView fires horizontal scroll even with overflow:hidden */
+.slider {
+  min-width: 100%;
+  position: relative;
+
+  .side-component {
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    will-change: transform;
+
+    &--left {
+      transition: transform 0.2s;
+      transform: translateX(0);
+      // position: absolute;
+      z-index: 1;
+      padding-right: 15px;
+
+      .slider-toggle {
+        right: 0;
+      }
+    }
+    &--right {
+      opacity: 0;
+      transform: translateX(-100%);
+      animation: slideRight 0.2s 1;
+      padding-left: 15px;
+
+      .slider-toggle {
+        left: 0;
+      }
+    }
+  }
+}
+
+.slide-left {
+  .side-component {
+    &--left {
+      transform: translateX(-100%);
+    }
+    &--right {
+      opacity: 1;
+      animation: slideLeft 0.2s 1;
+    }
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+.slider-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #0460a9; // Novartis Blue nibr
+  transition: background-color 0.15s;
+  width: 15px;
+  min-width: 15px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    color: #fff; // just a white color
+  }
+
+  &:hover {
+    background-color: #5291dd; // Blue Light nibr
+  }
+}
