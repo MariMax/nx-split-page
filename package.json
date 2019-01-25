@@ -12,7 +12,9 @@
     "bump-package-version": "cd ./projects/split-page && yarn version --patch --no-git-tag-version && cd ../..",
     "package": "yarn bump-package-version && ng build nx-split-page && npm run pack",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build-storybook": "build-storybook -c .storybook -o .out"
+    "build-storybook": "build-storybook -c .storybook -o .out",
+    "gh-pages": "cd ./.out && git init &&  git remote add storybook https://github.com/MariMax/nx-split-page.git && git add --all && git commit -am 'deploy' && git push storybook HEAD:gh-pages -f",
+    "deploy": "rm -rf ./.out && yarn build-storybook && yarn gh-pages"
   },
   "private": true,
   "dependencies": {

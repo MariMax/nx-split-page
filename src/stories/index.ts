@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/angular';
 import {NxSplitPageComponent} from 'nx-split-page';
 import {withNotes} from '@storybook/addon-notes';
-import {boolean, withKnobs} from '@storybook/addon-knobs';
+import {boolean, select, withKnobs} from '@storybook/addon-knobs';
 import * as marked from 'marked';
 import defaultText from './default.md';
 import longMainShortSide from './long-main-short-side.md';
@@ -12,6 +12,7 @@ import minMax from './min-max.md';
 import hide from './hide.md';
 import autoHide from './auto-hide.md';
 import full from './full-height.md';
+import keyChange from './allows-update-storage-key.md';
 import {NxSplitPageLocalStorageService} from 'projects/split-page/src/public_api';
 
 storiesOf('Nx-Split-Page', module)
@@ -559,6 +560,41 @@ storiesOf('Nx-Split-Page', module)
             </div>
           </nx-split-page>
         </div>
+      </div>
+    `,
+    })),
+  )
+  .add(
+    'Storage Change',
+    withNotes({text: marked(keyChange)})(() => ({
+      moduleMetadata: {
+        declarations: [NxSplitPageComponent],
+      },
+      template: `
+        <div>
+          <style>
+            .long-content \{
+              background-color: #D13A32;
+              min-height: 500px;
+              width: 100%;
+            \}
+            .short-content \{
+              background-color: #0460a9;
+              height: 100px;
+              width: 100%;
+            \}
+          </style>
+        <nx-split-page storageSettingsKey="${
+          select('Storage Key', [
+            'storage1-key',
+            'storage2-key',
+          ], 's1')
+        }" [mainMinSize]="100" [sideMinSize]="50">
+          <div main-area class="long-content">
+          </div>
+          <div side-area class="short-content">
+          </div>
+        </nx-split-page>
       </div>
     `,
     })),

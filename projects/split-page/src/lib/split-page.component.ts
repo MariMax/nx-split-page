@@ -118,6 +118,12 @@ export class NxSplitPageComponent implements OnInit, OnDestroy, OnChanges {
         this.mainSlideActive = this.hideSidebar;
       }
     }
+    if (changes.storageSettingsKey && !changes.storageSettingsKey.isFirstChange()) {
+      // on change sotrage key we should attemt to read new settings from LS
+      // if there is something, we should apply new dementions
+      this.applySizeChange(this.initialSize());
+    }
+
   }
 
   /**
@@ -195,6 +201,7 @@ export class NxSplitPageComponent implements OnInit, OnDestroy, OnChanges {
       main: this.primarySize,
       side: this.secondarySize,
     };
+    console.log(resizeParams, this.storageSettingsKey);
     this.splitPageService.notify(resizeParams, this.storageSettingsKey);
   }
 
