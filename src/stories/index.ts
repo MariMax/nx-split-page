@@ -1,5 +1,5 @@
 import {storiesOf} from '@storybook/angular';
-import {NxSplitPageComponent} from 'nx-split-page';
+import {NxSplitPageComponent, NxSplitPageLocalStorageService} from '../../projects/split-page/src/public_api';
 import {withNotes} from '@storybook/addon-notes';
 import {boolean, select, withKnobs} from '@storybook/addon-knobs';
 import * as marked from 'marked';
@@ -13,7 +13,6 @@ import hide from './hide.md';
 import autoHide from './auto-hide.md';
 import full from './full-height.md';
 import keyChange from './allows-update-storage-key.md';
-import {NxSplitPageLocalStorageService} from 'projects/split-page/src/public_api';
 
 storiesOf('Nx-Split-Page', module)
   .addDecorator(withKnobs)
