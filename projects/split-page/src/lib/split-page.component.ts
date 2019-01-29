@@ -201,7 +201,6 @@ export class NxSplitPageComponent implements OnInit, OnDestroy, OnChanges {
       main: this.primarySize,
       side: this.secondarySize,
     };
-    console.log(resizeParams, this.storageSettingsKey);
     this.splitPageService.notify(resizeParams, this.storageSettingsKey);
   }
 
