@@ -12,7 +12,7 @@
     "bump-package-version": "cd ./projects/split-page && yarn version --patch --no-git-tag-version && cd ../..",
     "package": "yarn bump-package-version && ng build nx-split-page && npm run pack",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build-storybook": "build-storybook -c .storybook -o .out",
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
   "private": true,
   "dependencies": {
